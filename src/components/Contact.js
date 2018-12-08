@@ -2,13 +2,18 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class Contact extends Component {
+  state = {
+    colorIsBlack: true
+  };
+
+  changeColor = e => {
+    this.setState({ colorIsBlack: !this.state.colorIsBlack });
+  };
   render() {
     const { name, email, phone } = this.props;
     return (
-      <div className="card card-body mb-3">
-        <h4>
-          {name} <i className="fas fa-magic" />
-        </h4>
+      <div className="card card-body mb-3" onClick={this.changeColor}>
+        <h4>{name}</h4>
         <ul className="list-group">
           <li className="list-group-item">Email: {email}</li>
           <li className="list-group-item">Phone: {phone}</li>
