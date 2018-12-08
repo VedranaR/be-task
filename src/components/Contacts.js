@@ -13,7 +13,7 @@ class Contacts extends Component {
       {
         id: 2,
         name: "Mary Shelley",
-        email: "mshelle@gmail.com",
+        email: "mshelley@gmail.com",
         phone: "010-123-456"
       }
     ]
