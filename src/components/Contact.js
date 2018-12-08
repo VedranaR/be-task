@@ -11,8 +11,13 @@ class Contact extends Component {
   };
   render() {
     const { name, email, phone } = this.props;
+    const { colorIsBlack } = this.state;
     return (
-      <div className="card card-body mb-3" onClick={this.changeColor}>
+      <div
+        className="card card-body mb-3"
+        onClick={this.changeColor}
+        style={colorIsBlack ? cardColorDefault : cardColorRandom}
+      >
         <h4>{name}</h4>
         <ul className="list-group">
           <li className="list-group-item">Email: {email}</li>
@@ -22,6 +27,14 @@ class Contact extends Component {
     );
   }
 }
+
+const cardColorDefault = {
+  color: "black"
+};
+
+const cardColorRandom = {
+  color: "red"
+};
 
 Contact.propTypes = {
   name: PropTypes.string.isRequired,
