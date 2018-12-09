@@ -2,11 +2,45 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class Contact extends Component {
-  state = {
-    colorIsBlack: true,
-    editContent: true
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      cardColorBlack: "#000000",
+      editContent: true,
+      cardColorOne: [],
+      cardColorTwo: []
+    };
+  }
 
+  componentDidMount() {
+    Promise.all([
+      fetch("http://www.colr.org/json/color/random"),
+      fetch("http://www.colr.org/json/color/random")
+    ])
+      .then(([response1, response2]) =>
+        Promise.all([response1.json(), response2.json()])
+      )
+      .then(([data1, data2]) =>
+        this.setState({
+          cardColorOne: data1.colors,
+          cardColorTwo: data2.colors
+        })
+      );
+
+    getRandomColor = () => {
+      let { cardColorOne } = this.state;
+      let { cardColorTwo } = this.state;
+
+      const bothColors = [
+        cardColorOne.map(color => color.hex),
+        cardColorTwo.map(color => color.hex)
+      ];
+
+      const randomColor = `#${Math.floor(Math.random() * bothColors.length)}`;
+
+      this.setState({ randomColor: randomColor });
+    };
+  }
   changeColor = e => {
     this.setState({ colorIsBlack: !this.state.colorIsBlack });
   };
@@ -16,19 +50,20 @@ class Contact extends Component {
   };
   render() {
     const { name, email, phone } = this.props;
-    const { colorIsBlack } = this.state;
+    const { cardColorBlack } = this.state;
     const { editContent } = this.state;
+    const { randomColor } = this.state;
 
     return (
       <div
         className="card card-body mb-3"
         onClick={this.changeColor}
-        style={colorIsBlack ? cardColorDefault : cardColorRandom}
+        style={colorIsBlack ? cardColorDefault : cardColorOne}
       >
         <h4>
           {name}
           <i
-            class="fas fa-user-edit"
+            className="fas fa-user-edit"
             style={{ cursor: "pointer", float: "right" }}
             onClick={this.toggleInput}
           />
@@ -60,13 +95,13 @@ class Contact extends Component {
   }
 }
 
-const cardColorDefault = {
-  color: "black"
-};
+// const cardColorDefault = {
+//   color: "black"
+// };
 
-const cardColorRandom = {
-  color: "red"
-};
+// const cardColorRandom = {
+//   color: cardColorTwo
+// };
 
 Contact.propTypes = {
   name: PropTypes.string.isRequired,

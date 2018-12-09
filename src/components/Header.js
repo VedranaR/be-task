@@ -14,11 +14,6 @@ const Header = props => {
   );
 };
 
-// const headerStyle = {
-//   color: "red",
-//   fontSize: "3rem"
-// };
-
 Header.propTypes = {
   branding: PropTypes.string.isRequired
 };
