@@ -6,41 +6,32 @@ class Contact extends Component {
     super(props);
     this.state = {
       cardColorBlack: "#000000",
-      editContent: true,
-      cardColorOne: [],
-      cardColorTwo: []
+      colorIsBlack: true,
+      editContent: false,
+      randomColors: [],
+      randomColor: ""
     };
   }
 
   componentDidMount() {
-    Promise.all([
-      fetch("http://www.colr.org/json/color/random"),
-      fetch("http://www.colr.org/json/color/random")
-    ])
-      .then(([response1, response2]) =>
-        Promise.all([response1.json(), response2.json()])
-      )
-      .then(([data1, data2]) =>
-        this.setState({
-          cardColorOne: data1.colors,
-          cardColorTwo: data2.colors
-        })
-      );
+    fetch("http://www.colr.org/json/color/random/")
+      .then(response => response.json())
+      .then(data => {
+        this.state.randomColors[0] = "#" + data.new_color;
+      });
 
-    getRandomColor = () => {
-      let { cardColorOne } = this.state;
-      let { cardColorTwo } = this.state;
-
-      const bothColors = [
-        cardColorOne.map(color => color.hex),
-        cardColorTwo.map(color => color.hex)
-      ];
-
-      const randomColor = `#${Math.floor(Math.random() * bothColors.length)}`;
-
-      this.setState({ randomColor: randomColor });
-    };
+    fetch("http://www.colr.org/json/color/random/")
+      .then(response => response.json())
+      .then(data => {
+        this.state.randomColors[1] = "#" + data.new_color;
+      });
   }
+
+  getRandomColor = e => {
+    let col = Math.floor(Math.random() * 2);
+    this.setState({ randomColor: this.state.randomColors[col] });
+  };
+
   changeColor = e => {
     this.setState({ colorIsBlack: !this.state.colorIsBlack });
   };
@@ -48,17 +39,19 @@ class Contact extends Component {
   toggleInput = e => {
     this.setState({ editContent: !this.state.editContent });
   };
+
   render() {
     const { name, email, phone } = this.props;
     const { cardColorBlack } = this.state;
+    const { colorIsBlack } = this.state;
     const { editContent } = this.state;
     const { randomColor } = this.state;
 
     return (
       <div
         className="card card-body mb-3"
-        onClick={this.changeColor}
-        style={colorIsBlack ? cardColorDefault : cardColorOne}
+        onClick={(this.getRandomColor, this.changeColor)}
+        style={colorIsBlack ? { cardColorBlack } : { randomColor }}
       >
         <h4>
           {name}
