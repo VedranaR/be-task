@@ -1,3 +1,25 @@
+<p>This is the project I did as an assigment for a job selection process.</p>
+
+<h3>Table of Contents</h4>
+<ol>
+<li><a href="#instr">Instructions</a></li>
+<li><a href="#contrib">Contributing</a></li>
+</ol>
+
+<h4 id="instr">Instructions</h4>
+<p>The main functionalities of this app are:</p>
+<ul>
+  <li>changing colors,</li>
+  <li>adding comments.</li>
+</ul>
+<p>You can change colors of the components simply by clicking on them. When you click, the color will toggle between black and another randomly assigned color, which is different for each of two componens.</p>
+<p>You can add comments by clicking on the edit icon that is floating on the right side of the "Comment" field in the each of two components. The click will toggle the "Add comment" input field. The text you input will be added to the "Comment" field and instantly visible.</p>
+
+<h4 id="contrib">Contributing</h4>
+<p>This game is written using React, HTML5 and Bootstrap. All the icons are provided by the <a href="https://fontawesome.com/">Font awesome</a>. The code is free for anyone to use and build upon it.</p>
+
+<br>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
