@@ -31,6 +31,10 @@ class Contact extends Component {
   getRandomColor = () => {
     if (this.state.style.color === "black") {
       let col = Math.floor(Math.random() * 2);
+
+      //testing the values in the browser console
+      console.log(this.state.randomColors[0], this.state.randomColors[1]);
+
       this.setState({ style: { color: this.state.randomColors[col] } });
     } else {
       this.setState({ style: { color: "black" } });
@@ -40,6 +44,9 @@ class Contact extends Component {
   //toggling the input field
   toggleInput = () => {
     this.setState({ addContent: !this.state.addContent });
+
+    //outputing the addContent bool value in the browser console
+    console.log(this.state.addContent);
   };
 
   //using the input value as a content
