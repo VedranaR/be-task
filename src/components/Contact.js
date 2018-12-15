@@ -5,14 +5,15 @@ class Contact extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addContent: false,
-      randomColors: [],
+      addContent: false, //bool that will be used for toggling input field
+      randomColors: [], //an array that will accept generated colors
       comment: "",
       style: {
         color: "black"
       }
     };
 
+    //fetching randomly generated colors and storing them in an array
     fetch("http://www.colr.org/json/color/random")
       .then(response => response.json())
       .then(data => {
@@ -26,6 +27,7 @@ class Contact extends Component {
       });
   }
 
+  //randomizing the color that will be used for each UI component
   getRandomColor = () => {
     if (this.state.style.color === "black") {
       let col = Math.floor(Math.random() * 2);
@@ -35,10 +37,12 @@ class Contact extends Component {
     }
   };
 
+  //toggling the input field
   toggleInput = () => {
     this.setState({ addContent: !this.state.addContent });
   };
 
+  //using the input value as a content
   changeInput = e => {
     this.setState({ comment: e.target.value });
   };

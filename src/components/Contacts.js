@@ -4,6 +4,7 @@ import Contact from "./Contact";
 class Contacts extends Component {
   state = {
     contacts: [
+      //hardcoded values for using in the Contact component
       {
         id: 1,
         name: "Jules Verne",
