@@ -16,9 +16,9 @@
 <p>You can add comments by clicking on the edit icon that is floating on the right side of the "Comment" field in the each of two components. The click will toggle the "Add comment" input field. The text you input will be added to the "Comment" field and instantly visible.</p>
 
 <h4 id="contrib">Contributing</h4>
-<p>This game is written using React, HTML5 and Bootstrap. All the icons are provided by the <a href="https://fontawesome.com/">Font awesome</a>. The code is free for anyone to use and build upon it.</p>
+<p>This project is written using React, HTML5 and Bootstrap. All the icons are provided by the <a href="https://fontawesome.com/">Font awesome</a>. The code is free for anyone to use and build upon it.</p>
 
-<br>
+<hr>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
